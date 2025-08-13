@@ -1,9 +1,7 @@
 package com.example.ChatApp.security;
 
-
-
 import io.jsonwebtoken.*;
-        import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -12,8 +10,9 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final String SECRET = "your_super_secret_key_which_should_be_long_and_random";
-    private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
+    // Make sure this is AT LEAST 32 bytes long for HS256
+    private static final String SECRET = "my_super_secret_key_that_is_long_enough_123456";
+    private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
