@@ -53,9 +53,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
             String secret = "my_super_secret_key_that_is_long_enough_123456";
 
             User user = new User();
-            user.setEmail("vidyaaaaaaaaaaaaa.com");
-            user.setUsername("vidy"); // ✅ Fix
-            user.setPassword("vidya"); // In real life, hash it
+            user.setEmail("qwerty.com");
+            user.setUsername("vidy");
+            user.setPassword("vidya");
             user.setDisplayName("vidyaaa");
             user.setBio("vidya's bioooooooooo, new one,");
             user.setIsActive(true);

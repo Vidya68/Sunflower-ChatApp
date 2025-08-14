@@ -11,16 +11,10 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    // Make sure this is AT LEAST 32 bytes long for HS256
-//    private static final String SECRET = "my_super_secret_key_that_is_long_enough_123456";
-//    private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
     @Value("${JWT_SECRET}")
     private String SECRET;
-
     @Value("${JWT_EXPIRATION_MS}")
     private long EXPIRATION_TIME;
-
-
     private Key getSigningKey() {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
