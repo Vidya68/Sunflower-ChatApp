@@ -40,4 +40,13 @@ public class CustomUserDetails implements UserDetails {
     public User getUser() {
         return user;
     }
+    // inside CustomUserDetails
+    public Long getId() {
+        return user.getId();
+    }
+
+    public String getDisplayName() {
+        return user.getDisplayName();
+    }
+
 }

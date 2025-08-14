@@ -5,6 +5,7 @@ import com.example.ChatApp.dto.user.MessageResponse;
 import com.example.ChatApp.dto.user.RegisterRequest;
 import com.example.ChatApp.dto.user.UserResponse;
 import com.example.ChatApp.entity.User;
+import com.example.ChatApp.dto.user.*;
 import com.example.ChatApp.repositories.UserRepository;
 import com.example.ChatApp.security.CustomUserDetails;
 import com.example.ChatApp.security.JwtUtil;
@@ -86,6 +87,32 @@ public class UserServiceImpl implements UserService {
             // bad credentials
             return new LoginResponse("Invalid credentials", null);
         }
+
+    }
+
+    @Override
+    public UserResponse updateProfile(Long userId, UpdateProfileRequest request) {
+        // Step 1: Fetch user from DB
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        // Step 2: Update fields
+        user.setDisplayName(request.getDisplayName());
+        user.setBio(request.getBio());
+
+        // Step 3: Save user
+        User updatedUser = userRepository.save(user);
+
+        // Step 4: Convert to UserResponse DTO
+        return UserResponse.builder()
+                .id(updatedUser.getId())
+                .username(updatedUser.getUsername())
+                .displayName(updatedUser.getDisplayName())
+                .email(updatedUser.getEmail())
+                .bio(updatedUser.getBio())
+                .profilePicture(updatedUser.getProfilePicture())
+                .createdAt(updatedUser.getCreatedAt())
+                .build();
     }
 
 }
