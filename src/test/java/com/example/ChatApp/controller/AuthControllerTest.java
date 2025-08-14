@@ -50,7 +50,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
         @BeforeEach
         void setUp() {
-            String secret = "my_super_secret_key_that_is_long_enough_123456";
+            String secret = "123456";
 
             User user = new User();
             user.setEmail("qwerty.com");
